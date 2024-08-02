@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider {
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.slide {
+    width: 300px;
+    height: 200px;
+    float: left;
+    transition: transform 0.5s ease;
+}
+#colorBox {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div class="slide">Slide 1</div>
+        <div class="slide">Slide 2</div>
+        <div class="slide">Slide 3</div>
+    </div>
+    <div id="colorBox">Change my color!</div>
+<button id="changeColor">Change Color</button>
+
+
+
+    
+</body>
+<script>
+    $(document).ready(function(){
+    let currentIndex = 0;
+    const slides = $('#slider .slide');
+    const totalSlides = slides.length;
+
+    function showNextSlide() {
+        slides.eq(currentIndex).css('transform', 'translateX(-300px)');
+        currentIndex = (currentIndex + 1) % totalSlides;
+        slides.eq(currentIndex).css('transform', 'translateX(0)');
+    }
+
+    setInterval(showNextSlide, 2000);
+});
+$(document).ready(function(){
+    $('#changeColor').click(function(){
+        $('#colorBox').animate({ backgroundColor: '#ff0000' }, 1000);
+    });
+});
+
+
+
+
+</script>
+</html>
